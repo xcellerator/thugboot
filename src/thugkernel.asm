@@ -59,7 +59,7 @@ clearScreen:
 	pusha				; Prologue - Save registers to stack
 	mov ah, 0x06			; AH = 0x06		; Scroll Up Window
 	xor al, al			; AL = 0x00		; Number of lines (0x00 to scroll entire window)
-	mov bh, 0x05			; BH = 0x05		; Attribute for blank lines being written
+	mov bh, 0x03			; BH = 0x03		; Colour Attribute
 	xor cx, cx			; CH = 0x00, CL = 0x00	; Row,Column of Upper-Left Hand Corner
 	mov dx, 0x184F			; DH = 0x18, DL = 0x4F	; Row,Column of Lower-Right Hand Corner
 	int 0x10			; Graphics Interrupt	; Nothing returned
