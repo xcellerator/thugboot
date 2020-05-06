@@ -12,22 +12,22 @@ org 0x7C00			; Load into memory address 0x7c00, gives us 0x400 bytes to play wit
 	sti			; Turn on maskable interrupts
 
 ; Reset Disks
-	mov ah, 0		; ah = 0	; Reset Floppy/Harddisk
-	mov dl, 0		; dl = 0	; Drive Number
-	int 0x13 		; Mass Storage Interrupt	; ah = status
+	mov ah, 0		; AH = 0	; Reset Floppy/Harddisk
+	mov dl, 0		; DL = 0	; Drive Number
+	int 0x13 		; Mass Storage Interrupt	; AH = Status
 
 ; Read from Harddisk and write to RAM
-	mov ah, 2		; ah = 2	; Read Floppy/Harddisk in CHS Mode
-	mov al, 2 		; al = 2	; Number of sectors to read
+	mov ah, 2		; AH = 2	; Read Floppy/Harddisk in CHS Mode
+	mov al, 2 		; AL = 2	; Number of sectors to read
 
-	mov bx, 0x8000		; bx = 0x8000	; Location to store read data - Kernel gets loaded to 0x800
+	mov bx, 0x8000		; BX = 0x8000	; Location to store read data - Kernel gets loaded to 0x800
 
-	mov ch, 0		; cx = 0	; Cylinder/Track
-	mov cl, 2		; cl = 2	; Sector
+	mov ch, 0		; CX = 0	; Cylinder/Track
+	mov cl, 2		; CL = 2	; Sector
 
-	mov dh, 0          	; dh = 0	; Head
+	mov dh, 0          	; DH = 0	; Head
 
-	int 0x13   		; Mass Storage Interrupt	; ah = status, al = bytes read
+	int 0x13   		; Mass Storage Interrupt	; AH = Status, AL = Bytes Read
 
 ; Jump to the Kernel
 	jmp 0x8000		; Pass execution to the kernel
