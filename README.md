@@ -11,6 +11,10 @@ The algorithm works by counting repeated characters. For example, "AAA" = `0x41`
 
 You can find a Python implementation of both the compression and decompression algorithms in [./src/algorithm_dev/compression.py](compression.py). It's not very optimal, but it's main purpose was to generate the compression bytes that could be copied into [./src/thugkernel.asm](thugkernel.asm). For the sake of easier debugging, the decompression routine was written in regular x86 assembly first and can be found in [./src/algorithm_dev/compression.asm](compression.asm).
 
+The original binary is `0x594` bytes long before padding begins (we have to obey 512 byte boundaries). With this compression algorithm in place, we've now only got `0x46d` bytes before the padding beings, which means we've saved `0x127` bytes in total.
+
+With some more tweaking, hopefully this can be brought down to 0x400, meaning we'll get a total reduction of 1/3. Unfortunately, due to padding, another 109 bytes (`0x6d`) has to be shaved off first.
+
 ![alt text](./thugboot.png "ThugBoot")
 
 ## Requirements
