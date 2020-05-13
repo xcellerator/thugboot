@@ -9,10 +9,6 @@ _start:
 	call printCompressedString	; Print the string stored in [SI]
 	call waitForKeypress		; Wait for input to repeat logo animation
 
-	jmp $   			; Freezes the system
-	hlt				; Halt's a real machine
-	ret     			; Halt's QEMU
-
 ; Prints an ASCII character stored in AL
 printChar:
 	mov ah, 0x0e			; AH = 0x0e		; Display Character (TTY Output)
